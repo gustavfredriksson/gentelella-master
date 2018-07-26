@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<!-- $colour1: #6E429D; lila
+$colour2: #212B3F; mörkblåa
+$colour3: #1FBB9C; ljusblåa
+$colour4: #ED6E4F; orangea
+$colour5: #7D8BA0; neutralgråblåa
+$colour6: #CFD7E2; ljusgråa
+$colour7: #95A2B7; nyans mellan 5 och 6
+-->
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../build/images/Logga_svart_ren.ico">
+    <title>ANALYSATORN BETA </title>
+
+    <script src="../amcharts.js"></script>
+    <script src="../serial.js"></script>
+    <script src="../export.min.js"></script>
+
+    <script src="../amstock.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="../dark.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js",type="text/JavaScript"></script>
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col">
+            <!-- <div class="navbar nav_title" style="border: 0;">
+              <a href="index2.html" class="site_title"><i class="fa fa-cloud"></i> <span>COIN CLOUD</span></a>
+            </div> -->
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/lblekinge.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Välkommen,</span>
+                <h2> Landstinget Blekinge </h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="marknad.html"><i class="fa fa-globe"></i> MARKNADEN </a>
+                  </li>
+                  <li><a href="ovrsktportfolj.html"><i class="fa fa-suitcase"></i> PORTFÖLJ </a>
+                    <ul class="nav child_menu" style="display: block;">
+                      <li><a href="ovrsktaktier.html">ÖVERSIKT AKTIER</a></li>
+                      <li><a href="ovrsktalternativa.html">ÖVERSIKT ALTERNATIVA</a></li>
+                      <li><a href="ovrsktrantor.html">ÖVERSIKT RÄNTOR</a></li>
+                      <li><a href="ovrsktkrediter.html">ÖVERSIKT KREDITER</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="analys.html"><i class="fa fa-area-chart"></i> ANALYS</a>
+                    <ul class="nav child_menu">
+                      <li><a href="analys1.html">ANALYS 1</a></li>
+                      <li><a href="analys2.html">ANALYS 2</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <div class="col-xs-12">
+                    <div class="tableheader full">PORTFÖLJSAMMANSTÄLLNING</div class="tableheader full">
+                    </div>
+                    <div class="col-xs-8">
+                      <div class="tableheader">Historisk avkastning</div>
+                      <div id="chartdiv"></div>
+                    </div>
+                    <div class="col-xs-4 tabledesign">
+                      <div class="tableheader">Nominell avkastning</div>
+                      <table class=minimalistBlack>
+                      <thead>
+                        <th></th>
+                        <th>Portfölj</th>
+                        <th>Avkastningskrav</th>
+                        <th>Diff</th>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <td colspan="4">Avkastningskrav: 2 procentenheter årlig avkastning. Tidigare SSVX 6M + 2%</td>
+                        </tr>
+                      </tfoot>
+                      <tr>
+                        <td>1m</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr>
+                      <tr>
+                        <td>3m</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr><tr>
+                        <td>6m</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr><tr>
+                        <td>1y</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr><tr>
+                        <td>ytd</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr><tr>
+                        <td>max</td>
+                        <td>+1,00%</td>
+                        <td>+2,0%</td>
+                        <td>-1,0%</td>
+                      </tr>
+                    </table>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="x_panel">
+                        <div class="x_content">
+                          <div class="col-xs-12">
+                        <div class="tableheader">
+                          TILLGÅNGSALLOKERING JÄMFÖRT MED RIKTLINJER
+                        </div>
+                      </div>
+                        <div class="col-md-4">
+                          <div class="tableheader">Totalportfölj</div class="tableheader">
+                          <table class=minimalistBlack>
+                            <thead>
+                              <th></th>
+                              <th>Portfölj</th>
+                              <th>Enligt policy</th>
+                              <th>Diff</th>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <td colspan="4">Avkastningskrav: 2 procentenheter årlig avkastning. Tidigare SSVX 6M + 2%</td>
+                              </tr>
+                            </tfoot>
+                            <tr>
+                              <td>Aktieportfölj</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr>
+                            <tr>
+                              <td>Ränteportfölj</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr><tr>
+                              <td>Alternativa</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr>
+                          </table>
+                          <div id="portfoljallokering"></div>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="tableheader">Geografisk allokering</div class="tableheader">
+                          <table class=minimalistBlack>
+                            <thead>
+                              <th></th>
+                              <th>Portfölj</th>
+                              <th>Enligt policy</th>
+                              <th>Diff</th>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <td colspan="4">Något om geografisk allokering utifrån policy</td>
+                              </tr>
+                            </tfoot>
+                            <tr>
+                              <td>Sverige</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr>
+                            <tr>
+                              <td>Europa exkl. Sverige</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr><tr>
+                              <td>USA</td>
+                              <td>+1,00%</td>
+                              <td>+2,0%</td>
+                              <td>-1,0%</td>
+                            </tr>
+                          </table>
+                          <div id="geoallokering"></div>
+                        </div>
+                        <div class="col-xs-4 tabledesign">
+                    <div class="tableheader">Durationer</div class="tableheader">
+                <table class=minimalistBlack>
+                <thead>
+                  <th></th>
+                  <th>Portfölj</th>
+                  <th>Enligt policy</th>
+                  <th>Överskridning</th>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <td colspan="4">Avkastningskrav: 2 procentenheter årlig avkastning. Tidigare SSVX 6M + 2%</td>
+                  </tr>
+                </tfoot>
+                <tr>
+                  <td>Duration</td>
+                  <td>+1,00%</td>
+                  <td>+2,0%</td>
+                  <td>-1,0%</td>
+                </tr>
+                <tr>
+                  <td>Kreditduration</td>
+                  <td>+1,00%</td>
+                  <td>+2,0%</td>
+                  <td>-1,0%</td>
+                </tr><tr>
+                  <td>Alternativa</td>
+                  <td>+1,00%</td>
+                  <td>+2,0%</td>
+                  <td>-1,0%</td>
+                </tr>
+              </table>
+              <div id="ranteduration"></div>
+            </div>
+          </div>
+        </div>
+        </div>
+</div>
+</div>
+
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Analysatorn by <a href="https://coin.se">COIN</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.js"></script>
+
+
+    <!-- Där alla våra egna grafer ligger -->
+    <script src="../initial.js"></script>
+    <script src="../graphsPORTFOLJ.js"></script>
+    <script> includeHTML() </script>
+
+  </body>
+</html>
